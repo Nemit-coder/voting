@@ -129,9 +129,7 @@ session_start();
                      <tr>
                          
                          <td class="align-middle no py-2 pe-14"><?php echo $row['id'] ?></td>
-                         <td class="align-middle no py-2 pe-14"><?php
-                         
-                          echo $_SESSION['username']; ?></td>
+                         <td class="align-middle no py-2 pe-14"><?php echo $row['added_by'] ?></td>
                          
                          <td class="align-middle date py-2 pe-2"><?php echo $row['name'] ?></td>
                          <td class="align-middle date py-2 pe-2"><?php echo $row['phone'] ?></td>
