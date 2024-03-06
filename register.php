@@ -18,7 +18,8 @@ if(isset($_POST['register'])){
     }
 
     else{
-        $sql = "INSERT INTO tbl_register (name,email,phone,ref_code,reference) VALUES ('$name','$email','$phone','$ref_code','$reference')";
+        $user = $_SESSION['username'];
+        $sql = "INSERT INTO tbl_register (name,email,phone,ref_code,reference,added_by) VALUES ('$name','$email','$phone','$ref_code','$reference','$user')";
         $result = mysqli_query($conn,$sql);
 
         if($result){
