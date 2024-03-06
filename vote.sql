@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2024 at 04:45 PM
+-- Generation Time: Mar 06, 2024 at 09:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,23 +24,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_acc`
+-- Table structure for table `tbl_admin_login`
 --
 
-CREATE TABLE `tbl_acc` (
+CREATE TABLE `tbl_admin_login` (
   `id` int(5) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `security_key` varchar(50) NOT NULL,
+  `s_key` varchar(50) NOT NULL,
   `roll` int(5) NOT NULL,
   `status` int(5) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tbl_acc`
+-- Dumping data for table `tbl_admin_login`
 --
 
-INSERT INTO `tbl_acc` (`id`, `username`, `password`, `security_key`, `roll`, `status`) VALUES
+INSERT INTO `tbl_admin_login` (`id`, `username`, `password`, `s_key`, `roll`, `status`) VALUES
 (1, '7698787438', 'e5c17ff693f431a8615dea3ab2c05b7bc413941a', 'e5c17ff693f431a8615dea3ab2c05b7bc413941a', 1, 1),
 (3, 'abc', '123', '123', 1, 1),
 (4, 'nemit', '5623', '5623', 2, 1);
@@ -58,18 +58,10 @@ CREATE TABLE `tbl_register` (
   `phone` bigint(10) NOT NULL,
   `ref_code` varchar(30) NOT NULL,
   `reference` varchar(30) NOT NULL,
+  `added_by` varchar(20) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_register`
---
-
-INSERT INTO `tbl_register` (`id`, `name`, `email`, `phone`, `ref_code`, `reference`, `status`, `time`) VALUES
-(1, 'yash', 'yashs@gmail.com', 9865235412, '9E0A9D68', 'Student', 1, '2024-03-05 11:56:55'),
-(2, 'demo', 'ava@gmail.com', 5645218965, 'DFCD5888', 'Social Media', 1, '2024-03-05 11:56:55'),
-(3, 'nemit', 'yashsagarjava@gmail.com', 6589541223, '7298A791', 'Social Media', 1, '2024-03-05 11:56:55');
 
 -- --------------------------------------------------------
 
@@ -147,26 +139,19 @@ CREATE TABLE `tbl_vote` (
   `vote1` varchar(40) NOT NULL,
   `vote2` varchar(40) NOT NULL,
   `vote3` varchar(40) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `added_by` varchar(20) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 1,
+  `time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tbl_vote`
---
-
-INSERT INTO `tbl_vote` (`id`, `name`, `phone`, `ref_code`, `vote1`, `vote2`, `vote3`, `status`) VALUES
-(1, 'yash', 98980165, '5s6d5', 'Networking', 'Server Management', 'Cloud Computing', 1),
-(2, 'demo', 6532, '56sf', 'Sever Management', 'Web Development', 'Networking', 1),
-(3, 'nemit', 56471, '5d8g9h', 'Full Stack Development', 'Cloud Computing', 'Server Management', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tbl_acc`
+-- Indexes for table `tbl_admin_login`
 --
-ALTER TABLE `tbl_acc`
+ALTER TABLE `tbl_admin_login`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -210,16 +195,16 @@ ALTER TABLE `tbl_vote`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_acc`
+-- AUTO_INCREMENT for table `tbl_admin_login`
 --
-ALTER TABLE `tbl_acc`
+ALTER TABLE `tbl_admin_login`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_register`
 --
 ALTER TABLE `tbl_register`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_source`
@@ -249,7 +234,7 @@ ALTER TABLE `tbl_visitor`
 -- AUTO_INCREMENT for table `tbl_vote`
 --
 ALTER TABLE `tbl_vote`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
