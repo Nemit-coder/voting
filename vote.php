@@ -22,7 +22,9 @@ if(isset($_POST['vote'])){
         $result3 = mysqli_query($conn, "SELECT * FROM tbl_register WHERE ref_code='$ref_code'");
         $numRow2 = mysqli_num_rows($result3);
         if($numRow2 > 0){
-            $sql = "INSERT INTO tbl_vote (name,phone,ref_code,vote1,vote2,vote3) VALUES ('$name','$phone','$ref_code','$vote1','$vote2','$vote3')";
+            session_start();
+            $user = $_SESSION['username'];
+            $sql = "INSERT INTO tbl_vote (name,phone,ref_code,vote1,vote2,vote3,added_by) VALUES ('$name','$phone','$ref_code','$vote1','$vote2','$vote3','$user')";
             $result4 = mysqli_query($conn,$sql);
 
             echo "<script>alert('Vote Added Successfully')</script>";
