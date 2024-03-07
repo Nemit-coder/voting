@@ -55,7 +55,7 @@ if(isset($_POST['register'])){
                     
                     As part of your registration, you have been assigned a unique reference code. Please keep this code handy, as you may be asked at the time of Voting Technologies <br><br>
                     
-                    Your Reference code is : ". $ref_code ." <br><br>
+                    <b>Your Reference code is : ". $ref_code ." </b><br><br>
                     
                     Once again, thank you for choosing PureSkill Techwar Event. We are excited to have you join us, and we're confident that it will be a memorable and enriching experience. <br><br>
                     
