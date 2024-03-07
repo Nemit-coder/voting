@@ -94,7 +94,7 @@ session_start();
                      <a class="btn btn-falcon-default btn-sm mx-2" href="register.php" type="button">
                            <span class="fas fa-plus" data-fa-transform="shrink-3"></span>
                            <span class="d-none d-sm-inline-block ms-1">Register</span>
-       </a>
+                     </a>
                        
                      </div>
                    </div>
@@ -102,9 +102,8 @@ session_start();
                </div>
                <div class="card-body p-0">
                  <div class="table-responsive scrollbar">
-              
-                   <table class="table table-sm mb-0 fs-10 table-view-tickets text-center">
-                     <thead class="bg-body-tertiary">
+                      <table class="table table-sm mb-0 fs-10 table-view-tickets text-center">
+                      <thead class="bg-body-tertiary">
                        <tr>
                        <th class="text-800 sort align-middle" data-sort="no">ID</th>
                          <th class="text-800 sort align-middle" data-sort="er">Name</th>
@@ -129,30 +128,16 @@ session_start();
                          <td class="align-middle date py-2 pe-2"><?php echo $row['phone'] ?></td>
                          <td class="align-middle date py-2 pe-2"><?php echo $row['ref_code'] ?></td>
                          <td class="align-middle date py-2 pe-2"><?php echo $row['reference'] ?></td>
-                         <td>
-                          
-         
-                         </td>
-                           <!-- <td class="py-2 align-middle white-space-nowrap text-end">
-                               <div class="dropdown font-sans-serif position-static"><button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal" type="button" id="order-dropdown-0" data-bs-toggle="dropdown" data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span class="fas fa-ellipsis-h fs-10"></span></button>
-                                 <div class="dropdown-menu dropdown-menu-end border py-0" aria-labelledby="order-dropdown-0">
-                                   <div class="py-2"><a class="dropdown-item" href="#!">Completed</a><a class="dropdown-item" href="#!">Processing</a><a class="dropdown-item" href="#!">On Hold</a><a class="dropdown-item" href="#!">Pending</a>
-                                     <div class="dropdown-divider"></div><a class="dropdown-item text-danger" href="#!">Delete</a>
-                                   </div>
-                                 </div>
-                               </div>
-                             </td> -->
-                      
                        </tr>
-                                      
+                       <?php
+                        }
+                        ?>
+                        </tbody>
 
-                       
-                     </tbody>
-                     <?php
-                    
-                  }
-                     ?>
+
+
                    </table>
+                      
                  
                    <div class="text-center d-none" id="tickets-table-fallback">
                      <p class="fw-bold fs-8 mt-3">No ticket found</p>
