@@ -1,5 +1,5 @@
 <?php
-     define('BASE_URL', 'http://localhost/resitech/');
+     define('BASE_URL', 'http://localhost/voting/');
 
 $url='localhost';
 $username='root';

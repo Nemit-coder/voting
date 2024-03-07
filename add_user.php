@@ -1,72 +1,27 @@
 <?php 
  include 'include/connection.php';
- 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'phpmailer/src/Exception.php';
-require 'phpmailer/src/PHPMailer.php';
-require 'phpmailer/src/SMTP.php';
-
 session_start();
-if(isset($_POST['register'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $reference = $_POST['reference'];
-    $ref_code = strtoupper(bin2hex(random_bytes(4)));
+if(isset($_POST['add_user'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $s_key = $_POST['s_key'];
+    $roll = $_POST['roll'];
 
-    $exist = "SELECT * FROM tbl_register WHERE email='$email' or  phone='$phone'";
+    $exist="SELECT * FROM tbl_admin_login WHERE username='$username' AND status=1 ";
     $result = mysqli_query($conn,$exist);
     $numRows = mysqli_num_rows($result);
 
     if($numRows > 0){
-        echo "<script>alert('Your Mobile Number or Email is already registered')</script>";
-        echo "<script>window.open('register.php','_self')</script>";
+        echo "<script>alert('User Already Exists')</script>";
+        echo "<script>window.open('add_user.php','_self')</script>";
     }
 
     else{
-        $user = $_SESSION['username'];
-        $sql = "INSERT INTO tbl_register (name,email,phone,ref_code,reference,added_by) VALUES ('$name','$email','$phone','$ref_code','$reference','$user')";
+        $sql = "INSERT INTO tbl_admin_login (username,password,s_key,roll) VALUES ('$username','$password','$s_key','$roll')";
         $result = mysqli_query($conn,$sql);
 
-        $mail = new PHPMailer(true);
-
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'nemitsagar558@gmail.com';
-        $mail->Password = 'zsdf oauy hbnw ghxp';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port = 465;
-
-        $mail->setFrom('nemitsagar558@gmail.com');
-
-        $mail->addAddress($email);
-
-        $mail->isHTML(true);
-
-        $mail->Subject = 'Thank You For Registering in PureSkill Techwar Event.';
-        $mail->Body = "Thank You ". $name ." <br><br>
-    
-                    We are thrilled to extend our heartfelt thanks to you for registering for PureSkill Techwar Event. We truly appreciate your interest and support. <br><br>
-                    
-                    Your registration has been successfully received, and we are looking forward to welcoming you on PureSkill Techwar Event. We have a fantastic program planned, and we can't wait for you to be a part of it. <br><br>
-                    
-                    As part of your registration, you have been assigned a unique reference code. Please keep this code handy, as you may be asked at the time of Voting Technologies <br><br>
-                    
-                    Your Reference code is : ". $ref_code ." <br><br>
-                    
-                    Once again, thank you for choosing PureSkill Techwar Event. We are excited to have you join us, and we're confident that it will be a memorable and enriching experience. <br><br>
-                    
-                    Thank You, <br><br>
-                    
-                    PureSkill IT Training Academy";
-
-        $mail->send();
-
         if($result){
-            echo "<script>alert('Registered Successfully')</script>";
+            echo "<script>alert('User Added Successfully')</script>";
         }
     }
     
@@ -165,41 +120,35 @@ if(isset($_POST['register'])){
                     <div class="p-4 p-md-5 flex-grow-1">
                       <div class="row flex-between-center">
                         <div class="col-auto">
-                          <h3>Register</h3>
+                          <h3>Add User</h3>
                         </div>
                       </div>
                       <form action="<?php $_SERVER["PHP_SELF"]; ?>" method="post"  enctype="multipart/form-data">
                         <div class="mb-3">
-                          <label class="form-label" for="card-email">Name</label>
-                          <input class="form-control" id="card-email" type="text" name="name" required/>
+                          <label class="form-label" for="card-email">Username</label>
+                          <input class="form-control" id="card-email" type="text" name="username" required/>
                         </div>
                         <div class="mb-3">
                           <div class="d-flex justify-content-between">
-                            <label class="form-label" for="card-password">Email</label>
+                            <label class="form-label" for="card-password">Password</label>
                           </div>
-                          <input class="form-control" id="card-password" type="email" name="email" required/>
+                          <input class="form-control" id="card-password" type="text" name="password" required/>
                         </div>
                         <div class="mb-3">
                           <div class="d-flex justify-content-between">
-                            <label class="form-label" for="card-password">Phone</label>
+                            <label class="form-label" for="card-password">S_Key</label>
                           </div>
-                          <input class="form-control" id="card-password" type="number" name="phone" required/>
+                          <input class="form-control" id="card-password" type="text" name="s_key" required/>
                         </div>
-                        
-                        
                         <div class="mb-3">
-                          <label class="form-label" for="card-role">Reference</label>
-                          <select class="form-select" id="card-role" name="reference" required>
-                          <option disabled selected>Select a option</option>
-                            <option value="Student">Student</option>
-                            <option value="Social Media">Social Media</option>
-                            <option value="Advertisement">Advertisement</option>
-                            <option value="Invitation">Invitation</option>
-                          </select>
+                          <div class="d-flex justify-content-between">
+                            <label class="form-label" for="card-password">Roll</label>
+                          </div>
+                          <input class="form-control" id="card-password" type="number" name="roll" required/>
                         </div>
                         
                         <div class="mb-3">
-                          <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="register">Log in</button></div>
+                          <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="add_user">Add</button></div>
                       </form>
                       
                     </div>

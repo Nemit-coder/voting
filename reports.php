@@ -59,11 +59,12 @@ session_start();
           var isFluid = JSON.parse(localStorage.getItem('isFluid'));
           if (isFluid) {
             var container = document.querySelector('[data-layout]');
-            container.classList.remove('container');
+            container.classList.remove('container');  
             container.classList.add('container-fluid');
           }
         </script>
-        <?php include 'top.php'; 
+        <?php include 'top.php'; ?>
+        <?php
 
           $result1 = "SELECT * FROM tbl_vote WHERE vote1='Networking' or vote2='Networking' or vote3='Networking'";
           $a1 = $conn->query($result1);

@@ -100,6 +100,7 @@ if(isset($_POST['vote'])){
   </head>
 
   <body>
+    <?php include 'top.php' ?>
     <!-- ===============================================--><!--    Main Content--><!-- ===============================================-->
     <main class="main" id="top">
       <div class="container-fluid">
