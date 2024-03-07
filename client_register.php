@@ -1,6 +1,14 @@
 <?php 
 include 'include/connection.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+
+
 if(isset($_POST['register'])){
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -20,6 +28,41 @@ if(isset($_POST['register'])){
     else{
         $sql = "INSERT INTO tbl_register (name,email,phone,ref_code,reference) VALUES ('$name','$email','$phone','$ref_code','$reference')";
         $result = mysqli_query($conn,$sql);
+
+        $mail = new PHPMailer(true);
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'nemitsagar558@gmail.com';
+        $mail->Password = 'zsdf oauy hbnw ghxp';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+
+        $mail->setFrom('nemitsagar558@gmail.com');
+
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+
+        $mail->Subject = 'Thank You For Registering in PureSkill Techwar Event.';
+        $mail->Body = "Thank You ". $name ." <br><br>
+    
+                    We are thrilled to extend our heartfelt thanks to you for registering for PureSkill Techwar Event. We truly appreciate your interest and support. <br><br>
+                    
+                    Your registration has been successfully received, and we are looking forward to welcoming you on PureSkill Techwar Event. We have a fantastic program planned, and we can't wait for you to be a part of it. <br><br>
+                    
+                    As part of your registration, you have been assigned a unique reference code. Please keep this code handy, as you may be asked at the time of Voting Technologies <br><br>
+                    
+                    <b>Your Reference code is : ". $ref_code ." </b><br><br>
+                    
+                    Once again, thank you for choosing PureSkill Techwar Event. We are excited to have you join us, and we're confident that it will be a memorable and enriching experience. <br><br>
+                    
+                    Thank You, <br><br>
+                    
+                    PureSkill IT Training Academy";
+
+        $mail->send();
 
         if($result){
             echo "<script>alert('Registered Successfully')</script>";
