@@ -15,6 +15,7 @@ if(isset($_POST['register'])){
     $phone = $_POST['phone'];
     $reference = $_POST['reference'];
     $ref_code = strtoupper(bin2hex(random_bytes(4)));
+    $user = "Visitor";
 
     $exist = "SELECT * FROM tbl_register WHERE email='$email' or  phone='$phone'";
     $result = mysqli_query($conn,$exist);
@@ -26,7 +27,7 @@ if(isset($_POST['register'])){
     }
 
     else{
-        $sql = "INSERT INTO tbl_register (name,email,phone,ref_code,reference) VALUES ('$name','$email','$phone','$ref_code','$reference')";
+        $sql = "INSERT INTO tbl_register (name,email,phone,ref_code,reference,added_by) VALUES ('$name','$email','$phone','$ref_code','$reference','$user')";
         $result = mysqli_query($conn,$sql);
 
         $mail = new PHPMailer(true);
