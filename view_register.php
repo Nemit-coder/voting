@@ -103,6 +103,48 @@ session_start();
                <div class="card-body p-0">
                  <div class="table-responsive scrollbar">
                       <table class="table table-sm mb-0 fs-10 table-view-tickets text-center">
+                        <?php
+                          if($_SESSION['username'] == 'admin'){
+                        ?>
+                      <thead class="bg-body-tertiary">
+                       <tr>
+                       <th class="text-800 sort align-middle" data-sort="no">ID</th>
+                         <th class="text-800 sort align-middle" data-sort="er">User</th>
+                         <th class="text-800 sort align-middle" data-sort="er">Name</th>
+                         <th class="text-800 sort align-middle" data-sort="name">Email</th>
+                         <th class="text-800 sort align-middle" data-sort="phone">Phone</th>
+                         <th class="text-800 sort align-middle" data-sort="course">Reference Code</th>
+                         <th class="text-800 sort align-middle" data-sort="counsellor">Reference</th>
+                         <th class="text-800 sort align-middle" data-sort="counsellor">Time</th>
+                       </tr>
+                     </thead>
+                     <tbody class="list" id="table-ticket-body">
+                     <?php
+                  $sql = "SELECT * FROM tbl_register WHERE status='1'";
+                  $result = mysqli_query($conn,$sql);
+                  while($row = mysqli_fetch_array($result)){
+                    
+               ?>
+                     <tr>
+                         
+                         <td class="align-middle no py-2 pe-14"><?php echo $row['id'] ?></td>
+                         <td class="align-middle date py-2 pe-2"><?php echo $row['added_by'] ?></td>
+                         <td class="align-middle date py-2 pe-2"><?php echo $row['name'] ?></td>
+                         <td class="align-middle date py-2 pe-2"><?php echo $row['email'] ?></td>
+                         <td class="align-middle date py-2 pe-2"><?php echo $row['phone'] ?></td>
+                         <td class="align-middle date py-2 pe-2"><?php echo $row['ref_code'] ?></td>
+                         <td class="align-middle date py-2 pe-2"><?php echo $row['reference'] ?></td>
+                         <td class="align-middle date py-2 pe-2"><?php echo $row['time'] ?></td>
+                       </tr>
+                       <?php
+                        }
+                        ?>
+                        </tbody>
+                      <?php
+                          }
+
+                          else{
+                      ?>
                       <thead class="bg-body-tertiary">
                        <tr>
                        <th class="text-800 sort align-middle" data-sort="no">ID</th>
@@ -130,7 +172,8 @@ session_start();
                          <td class="align-middle date py-2 pe-2"><?php echo $row['reference'] ?></td>
                        </tr>
                        <?php
-                        }
+                          }
+                        } 
                         ?>
                         </tbody>
 
