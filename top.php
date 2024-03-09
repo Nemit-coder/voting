@@ -33,6 +33,9 @@
               </a>
               <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
                 <div class="bg-white dark__bg-1000 rounded-2 py-2">
+                  <div>
+                    <h5 class="mx-5 text-danger"><?php echo strtoupper($_SESSION['username']) ?></h5>
+                  </div>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="<?php echo BASE_URL?>logout.php">Logout</a>
                 </div>
