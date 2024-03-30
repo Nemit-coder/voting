@@ -210,15 +210,7 @@ if(isset($_POST['register'])){
           </div>
         </div>
       </div>
-    </main>
-      
-         
-
-
-
-                
-            
-          
+    </main> 
           <?php include 'bottom.php';?>
         </div>
         </div>
